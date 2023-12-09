@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "terratech:block/power_brick"
+    }
+  }
+}
