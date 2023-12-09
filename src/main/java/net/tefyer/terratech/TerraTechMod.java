@@ -15,6 +15,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.tefyer.terratech.register.BlockEntityRegister;
+import net.tefyer.terratech.register.BlockRegister;
+import net.tefyer.terratech.register.ItemRegister;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -33,7 +36,10 @@ public class TerraTechMod
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
+        ItemRegister.register(modEventBus);
+        BlockRegister.register(modEventBus);
 
+        BlockEntityRegister.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -72,6 +78,8 @@ public class TerraTechMod
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+
         }
     }
 }
