@@ -6,7 +6,9 @@ public abstract class ModdedEnergyStorage extends EnergyStorage {
 
     public ModdedEnergyStorage(int capacity, int maxTransfer) {
         super(capacity, maxTransfer);
+        energy = 0;
     }
+
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
