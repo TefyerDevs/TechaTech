@@ -11,7 +11,7 @@ import net.tefyert.techatech.api.block.cable.block.CableBlock;
 import net.tefyert.techatech.api.block.facade.FacadeBlock;
 import net.tefyert.techatech.api.block.facade.FacadeBlockItem;
 import net.tefyert.techatech.api.registration.BlockDeferredRegister;
-import net.tefyert.techatech.generators.block.basic.BasicGeneratorBlock;
+
 
 import java.util.function.Supplier;
 
@@ -32,6 +32,5 @@ public class BlockRegistery {
             BlockDeferredRegister.registerItem("facade",()-> new FacadeBlockItem(FACADE_BLOCK.get(), new Item.Properties()));
 
 
-    public static final RegistryObject<Block>  BASIC_GENERATOR =
-            BLOCK_DEFERRED_REGISTER.register("basic_generator", BasicGeneratorBlock::new);
+
 }

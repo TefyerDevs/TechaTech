@@ -31,6 +31,7 @@ import net.tefyert.techatech.main.block.BlockEntityRegistry;
 import net.tefyert.techatech.main.block.BlockRegistery;
 import net.tefyert.techatech.main.client.screen.container.ContainerRegistry;
 import net.tefyert.techatech.main.item.ItemRegistry;
+import net.tefyert.techatech.generators.GeneratorRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,9 +56,12 @@ public class Techatech {
         BlockRegistery.BLOCK_DEFERRED_REGISTER.register(modEventBus);
 
 
+
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
 
         ContainerRegistry.MENU_TYPES.register(modEventBus);
+
+        GeneratorRegistry.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in

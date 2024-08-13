@@ -17,7 +17,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.tefyert.techatech.api.energy.TechaEnergyStorage;
-import net.tefyert.techatech.main.block.BlockEntityRegistry;
+import net.tefyert.techatech.generators.block.GeneratorBlockEntityRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -64,7 +64,7 @@ public class BasicGeneratorBlockEntity extends BlockEntity {
     private int burnTime;
 
     public BasicGeneratorBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.GENERATOR_BLOCK_ENTITY.get(), pos, state);
+        super(GeneratorBlockEntityRegistry.GENERATOR_BLOCK_ENTITY.get(), pos, state);
     }
 
     public void tickServer() {
