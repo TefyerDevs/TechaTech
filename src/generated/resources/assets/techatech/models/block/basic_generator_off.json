@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "techatech:block/machine_bottom",
+    "east": "techatech:block/machine_side",
+    "north": "techatech:block/basic_generator",
+    "particle": "techatech:block/machine_side",
+    "south": "techatech:block/machine_side",
+    "up": "techatech:block/machine_top",
+    "west": "techatech:block/machine_side"
+  }
+}
