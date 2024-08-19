@@ -82,6 +82,7 @@ public class BasicGeneratorBlockEntity extends BlockEntity {
         }
         burnTime = bt;
         if (getBlockState().getValue(BlockStateProperties.POWERED) != burnTime > 0) {
+            assert level != null;
             level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(BlockStateProperties.POWERED, burnTime > 0));
         }
         setChanged();
@@ -95,17 +96,16 @@ public class BasicGeneratorBlockEntity extends BlockEntity {
             }
             assert level != null;
             BlockEntity be = level.getBlockEntity(getBlockPos().relative(direction));
-            if (be != null) {
-                be.getCapability(ForgeCapabilities.ENERGY).map(e -> {
-                    if (e.canReceive()) {
-                        int received = e.receiveEnergy(Math.min(energy.getEnergyStored(), MAXTRANSFER), false);
-                        energy.extractEnergy(received, false);
-                        setChanged();
-                        return received;
-                    }
-                    return 0;
-                });
-            }
+            assert be != null;
+            be.getCapability(ForgeCapabilities.ENERGY).map(e -> {
+                if (e.canReceive()) {
+                    int received = e.receiveEnergy(Math.min(energy.getEnergyStored(), MAXTRANSFER), false);
+                    energy.extractEnergy(received, false);
+                    setChanged();
+                    return received;
+                }
+                return 0;
+            });
         }
     }
 
