@@ -8,8 +8,12 @@ import net.tefyert.techatech.api.block.cable.block.CableBlockEntity;
 import net.tefyert.techatech.api.block.facade.FacadeBlockEntity;
 import net.tefyert.techatech.generators.block.basic.BasicGeneratorBlockEntity;
 import net.tefyert.techatech.main.Techatech;
+import net.tefyert.techatech.main.block.machines.MechanicalPressBlockEntity;
+
 
 public class BlockEntityRegistry {
+
+
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Techatech.MODID);
 
@@ -18,6 +22,16 @@ public class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<FacadeBlockEntity>> ENERGY_FACADE_BE =
             BLOCK_ENTITIES.register("facade_be",()-> BlockEntityType.Builder.of(FacadeBlockEntity::new,BlockRegistery.FACADE_BLOCK.get()).build(null));
 
+
     public static final  RegistryObject<BlockEntityType<BasicGeneratorBlockEntity>> GENERATOR_BLOCK_ENTITY =
-            BLOCK_ENTITIES.register("basic_generator_be",()-> BlockEntityType.Builder.of(BasicGeneratorBlockEntity::new,BlockRegistery.BASIC_GENERATOR.get()).build(null));
+            BLOCK_ENTITIES.register("basic_generator_be",
+                    ()-> BlockEntityType.Builder.of(BasicGeneratorBlockEntity::new,BlockRegistery.BASIC_GENERATOR.get()).build(null));
+
+
+    public static final  RegistryObject<BlockEntityType<MechanicalPressBlockEntity>> MECHANICAL_PRESS =
+            BLOCK_ENTITIES.register("mechanical_press_be",
+                    ()-> BlockEntityType.Builder.of(MechanicalPressBlockEntity::new,BlockRegistery.MECHANICAL_PRESS.get()).build(null));
+
+    public static void register() {
+    }
 }

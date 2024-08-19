@@ -16,8 +16,9 @@ import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.tefyert.techatech.api.energy.ModEnergyStorage;
 import net.tefyert.techatech.api.energy.TechaEnergyStorage;
-import net.tefyert.techatech.generators.block.GeneratorBlockEntityRegistry;
+import net.tefyert.techatech.main.block.BlockEntityRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -38,33 +39,13 @@ public class BasicGeneratorBlockEntity extends BlockEntity {
     private final ItemStackHandler items = createItemHandler();
     private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> items);
 
-    private final EnergyStorage energy = createEnergyStorage();
-    private final LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(() -> new TechaEnergyStorage(energy) {
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            return 0;
-        }
-
-        @Override
-        public int extractEnergy(int maxExtract, boolean simulate) {
-            return 0;
-        }
-
-        @Override
-        public boolean canExtract() {
-            return false;
-        }
-
-        @Override
-        public boolean canReceive() {
-            return false;
-        }
-    });
+    private final TechaEnergyStorage energy = createEnergyStorage();
+    private final LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(() -> energy);
 
     private int burnTime;
 
     public BasicGeneratorBlockEntity(BlockPos pos, BlockState state) {
-        super(GeneratorBlockEntityRegistry.GENERATOR_BLOCK_ENTITY.get(), pos, state);
+        super(BlockEntityRegistry.GENERATOR_BLOCK_ENTITY.get(), pos, state);
     }
 
     public void tickServer() {
@@ -112,6 +93,7 @@ public class BasicGeneratorBlockEntity extends BlockEntity {
             if (energy.getEnergyStored() <= 0) {
                 return;
             }
+            assert level != null;
             BlockEntity be = level.getBlockEntity(getBlockPos().relative(direction));
             if (be != null) {
                 be.getCapability(ForgeCapabilities.ENERGY).map(e -> {
@@ -164,8 +146,8 @@ public class BasicGeneratorBlockEntity extends BlockEntity {
     }
 
     @Nonnull
-    private EnergyStorage createEnergyStorage() {
-        return new EnergyStorage(CAPACITY, MAXTRANSFER, MAXTRANSFER);
+    private TechaEnergyStorage createEnergyStorage() {
+        return new TechaEnergyStorage(CAPACITY, MAXTRANSFER);
     }
 
     @NotNull

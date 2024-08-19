@@ -5,10 +5,13 @@ public class Chemical {
     int colour_id = 0x0;
     int atomic_number = 0;
 
-    public Chemical(String p_id, int p_colour_id, int p_atomic_number) {
+    boolean is_pellet;
+
+    public Chemical(String p_id, int p_colour_id, int p_atomic_number,boolean is_pellet) {
         this.id = p_id;
         this.colour_id = p_colour_id;
         this.atomic_number = p_atomic_number;
+        this.is_pellet = is_pellet;
     }
 
     public String get_id() {
@@ -22,4 +25,7 @@ public class Chemical {
         return atomic_number;
     }
 
+    public boolean is_pellet() {
+        return is_pellet;
+    }
 }

@@ -4,13 +4,13 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tefyert.techatech.api.chemical.Chemical;
 import net.tefyert.techatech.api.chemical.ChemicalIdentifiers;
+import net.tefyert.techatech.api.registration.RegistrationList;
 import net.tefyert.techatech.main.Techatech;
 import net.tefyert.techatech.main.block.BlockRegistery;
 
@@ -63,6 +63,11 @@ public class ItemRegistry {
             ITEMS_LIST.add(DEFERRED_REGISTER.register(chemical.get_id()+"_impure_dust",()->new ChemicalItem(new Item.Properties(),chemical)));
 
             ITEMS_LIST.add(DEFERRED_REGISTER.register(chemical.get_id()+"_plate",()->new ChemicalItem(new Item.Properties(),chemical)));
+
+            if(!chemical.is_pellet())
+                ITEMS_LIST.add(DEFERRED_REGISTER.register(chemical.get_id()+"_ingot",()->new ChemicalItem(new Item.Properties(),chemical)));
+            else
+                ITEMS_LIST.add(DEFERRED_REGISTER.register(chemical.get_id()+"_pellet",()->new ChemicalItem(new Item.Properties(),chemical)));
 
         }
     }

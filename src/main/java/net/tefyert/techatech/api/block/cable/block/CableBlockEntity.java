@@ -33,29 +33,8 @@ public class CableBlockEntity extends BlockEntity {
     public static final int MAXTRANSFER = 100;
     public static final int CAPACITY = 1000;
 
-    private final EnergyStorage energy = createEnergyStorage();
-    private final LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(() -> new TechaEnergyStorage(energy) {
-        @Override
-        public int extractEnergy(int maxExtract, boolean simulate) {
-            return 0;
-        }
-
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            setChanged();
-            return super.receiveEnergy(maxReceive, simulate);
-        }
-
-        @Override
-        public boolean canExtract() {
-            return false;
-        }
-
-        @Override
-        public boolean canReceive() {
-            return true;
-        }
-    });
+    private final TechaEnergyStorage energy = createEnergyStorage();
+    private final LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(() -> energy);
 
     // Cached outputs
     private Set<BlockPos> outputs = null;
@@ -76,6 +55,7 @@ public class CableBlockEntity extends BlockEntity {
                 // Distribute energy over all outputs
                 int amount = energy.getEnergyStored() / outputs.size();
                 for (BlockPos p : outputs) {
+                    assert level != null;
                     BlockEntity te = level.getBlockEntity(p);
                     if (te != null) {
                         te.getCapability(ForgeCapabilities.ENERGY).ifPresent(handler -> {
@@ -154,8 +134,8 @@ public class CableBlockEntity extends BlockEntity {
     }
 
     @Nonnull
-    private EnergyStorage createEnergyStorage() {
-        return new EnergyStorage(CAPACITY, MAXTRANSFER, MAXTRANSFER);
+    private TechaEnergyStorage createEnergyStorage() {
+        return new TechaEnergyStorage(CAPACITY, MAXTRANSFER);
     }
 
     @NotNull

@@ -2,22 +2,17 @@ package net.tefyert.techatech.generators.block.basic;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.tefyert.techatech.main.block.BlockRegistery;
 import net.tefyert.techatech.main.client.screen.container.ContainerRegistry;
-import org.jetbrains.annotations.Nullable;
 
 ;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
 
 import static net.tefyert.techatech.generators.block.basic.BasicGeneratorBlockEntity.SLOT;

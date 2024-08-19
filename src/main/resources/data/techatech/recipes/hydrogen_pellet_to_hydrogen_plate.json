@@ -1,0 +1,13 @@
+{
+  "type": "techatech:mechanical_pressing",
+  "ingredients": [
+    {
+      "count": 5,
+      "item": "techatech:hydrogen_pellet"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "techatech:hydrogen_plate"
+  }
+}

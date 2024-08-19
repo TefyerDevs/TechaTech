@@ -12,11 +12,19 @@ import net.tefyert.techatech.generators.block.basic.BasicGeneratorBlock;
 import net.tefyert.techatech.generators.block.basic.BasicGeneratorScreen;
 import net.tefyert.techatech.main.block.BlockRegistery;
 import net.tefyert.techatech.main.client.screen.container.ContainerRegistry;
+import net.tefyert.techatech.main.client.screen.container.custom.MechanicalPressScreen;
 
 import static net.tefyert.techatech.main.Techatech.MODID;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientSetup {
+    @SubscribeEvent
+    public static void init(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            MenuScreens.register(ContainerRegistry.GENERATOR_CONTAINER.get(), BasicGeneratorScreen::new);
+            MenuScreens.register(ContainerRegistry.MECHANICAL_PRESS.get(), MechanicalPressScreen::new);
+        });
+    }
     @SubscribeEvent
     public static void modelInit(ModelEvent.RegisterGeometryLoaders event) {
         CableModelLoader.register(event);
@@ -26,10 +34,5 @@ public class ClientSetup {
     public static void registerBlockColor(RegisterColorHandlersEvent.Block event) {
         event.register(new FacadeBlockColor(), BlockRegistery.FACADE_BLOCK.get());
     }
-    @SubscribeEvent
-    public static void init(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            MenuScreens.register(ContainerRegistry.GENERATOR_CONTAINER.get(), BasicGeneratorScreen::new);
-        });
-    }
+
 }

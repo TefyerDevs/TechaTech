@@ -2,8 +2,6 @@ package net.tefyert.techatech.datagen.Custom;
 
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.tefyert.techatech.generators.block.basic.BasicGeneratorContainer;
-import net.tefyert.techatech.generators.block.basic.BasicGeneratorScreen;
 import net.tefyert.techatech.main.Techatech;
 import net.tefyert.techatech.main.block.BlockRegistery;
 
@@ -21,5 +19,6 @@ public class LanguageProviderGenerator extends LanguageProvider {
 
 
         add(Techatech.MODID+".screen.generator", "Basic Generator");
+        add("block."+Techatech.MODID+".mechanical_pressing", "Mechanical Press");
     }
 }

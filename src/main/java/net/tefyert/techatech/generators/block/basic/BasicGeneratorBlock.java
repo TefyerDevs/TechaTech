@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BasicGeneratorBlock extends Block implements EntityBlock {
@@ -48,13 +49,13 @@ public class BasicGeneratorBlock extends Block implements EntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         if (level.isClientSide) {
             return null;
-        } else {
-            return (lvl, pos, st, be) -> {
-                if (be instanceof BasicGeneratorBlockEntity generator) {
-                    generator.tickServer();
-                }
-            };
         }
+
+        return (lvl, pos, st, be) -> {
+            if (be instanceof BasicGeneratorBlockEntity generator) {
+                generator.tickServer();
+            }
+        };
     }
 
     @Override
@@ -64,12 +65,12 @@ public class BasicGeneratorBlock extends Block implements EntityBlock {
             if (be instanceof BasicGeneratorBlockEntity) {
                 MenuProvider containerProvider = new MenuProvider() {
                     @Override
-                    public Component getDisplayName() {
+                    public @NotNull Component getDisplayName() {
                         return Component.translatable(SCREEN_TUTORIAL_GENERATOR);
                     }
 
                     @Override
-                    public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity) {
+                    public AbstractContainerMenu createMenu(int windowId, @NotNull Inventory playerInventory, @NotNull Player playerEntity) {
                         return new BasicGeneratorContainer(windowId, playerEntity, pos);
                     }
                 };

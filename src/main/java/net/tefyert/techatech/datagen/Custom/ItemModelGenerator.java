@@ -5,7 +5,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import net.tefyert.techatech.main.Techatech;
@@ -31,6 +30,10 @@ public class ItemModelGenerator extends ItemModelProvider {
                 simpleItem2(Item, "dust_impure", "dust_impure_overlay");
             }else if(Item.getId().getPath().contains("plate")){
                 simpleItem(Item,"plate");
+            }else if(Item.getId().getPath().contains("ingot")){
+                simpleItem(Item,"ingot");
+            }else if(Item.getId().getPath().contains("pellet")){
+                simpleItem(Item,"pellet");
             }else{
                 simpleItem(Item,"dust_pure");
             }
