@@ -142,7 +142,7 @@ public class MechanicalPressBlockEntity extends BasicMachine {
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("mechanical_press.progress", progress);
-
+        pTag.putInt("mechanical_press.energy", energy.getEnergy());
         super.saveAdditional(pTag);
     }
 
@@ -151,7 +151,7 @@ public class MechanicalPressBlockEntity extends BasicMachine {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("mechanical_press.progress");
-        energy.setEnergy(pTag.getInt("gem_infusing_station.energy"));
+        energy.setEnergy(pTag.getInt("mechanical_press.energy"));
     }
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         assert level != null;
